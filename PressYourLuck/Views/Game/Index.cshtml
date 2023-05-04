@@ -1,0 +1,34 @@
+﻿@model List<Card>
+
+<div class="row">
+    <div class="col-6">
+        Current Bet: @ViewData[""]]
+    </div>
+    <div class="col-6">
+        <a>Take the Coins!</a>
+    </div>
+</div>
+<div class="row">
+    @foreach (var tile in Model)
+    {   
+    <div class="col-3 col-md-2" style="margin: 4px 0px 4px 0px">
+        <div class="card">
+            <img class="card-img-top" src="@tile.GetImagePath()" >
+            <div class="card-body">
+                @if (tile.Visible)
+                {
+                    <div>@tile.Value.ToString("N2")</div>
+
+                }
+                else
+                {
+                    <a class="btn btn-primary" href="/Game/CardPicked?indexCard=@tile.TileIndex">Select</a>
+                    @*<a class="btn btn-primary" asp-controller="Game" asp-action="CardPicked" asp-route="tile.TileIndex">Select</a>*@
+
+                }
+            </div>
+        </div>
+    </div>    
+    }
+</div>
+
